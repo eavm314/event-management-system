@@ -36,7 +36,7 @@ jobs:
       - name: Terraform Plan
         run: |
           terraform plan -out=tfplan \
-            -var 'bucket_name=${{ vars.STORAGE_BUCKET }}' \
+            -var 'bucket_name=${{ vars.STORAGE_BUCKET }}'
 
 
       - name: Terraform Apply
