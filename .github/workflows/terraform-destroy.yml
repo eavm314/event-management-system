@@ -20,12 +20,12 @@ jobs:
       - name: Setup Terraform 🌍
         uses: hashicorp/setup-terraform@v1
 
-      - name: Terraform Init
+      - name: Terraform Init 🚀
         run: |
           cd infrastructure
           terraform init \
             -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}" \
             -backend-config="key=${{ vars.TFSTATE_KEY }}"
 
-      - name: Terraform Destroy
+      - name: Terraform Destroy 💀
         run: terraform destroy -auto-approve
