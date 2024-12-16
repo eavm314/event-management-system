@@ -27,17 +27,19 @@ jobs:
         uses: hashicorp/setup-terraform@v1
       
       - name: Terraform Init
+        working-directory: infrastructure
         run: |
-          cd infrastructure
           terraform init \
             -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}" \
             -backend-config="key=${{ vars.TFSTATE_KEY }}"
 
       - name: Terraform Plan
+        working-directory: infrastructure
         run: |
           terraform plan -out=tfplan \
-            -var 'bucket_name=${{ vars.STORAGE_BUCKET }}' \
+            -var 'bucket_name=${{ vars.STORAGE_BUCKET }}'
 
 
       - name: Terraform Apply
+        working-directory: infrastructure
         run: terraform apply tfplan
