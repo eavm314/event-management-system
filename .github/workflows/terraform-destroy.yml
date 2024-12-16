@@ -4,22 +4,28 @@ on: workflow_dispatch
 jobs:
   terraform-destroy:
     runs-on: ubuntu-latest
+    environment: devops
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up AWS CLI 🤖
+      - name: Configure AWS credentials 🤖
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       
-      - name: Setup Terraform
+      - name: Setup Terraform 🌍
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init
-        run: terraform init
+        run: |
+          cd infrastructure
+          terraform init \
+            -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}" \
+            -backend-config="key=${{ vars.TFSTATE_KEY }}"
 
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
