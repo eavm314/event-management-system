@@ -28,6 +28,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, and push image to Amazon ECR
+        working-directory: backend
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
