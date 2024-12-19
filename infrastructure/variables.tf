@@ -5,3 +5,8 @@ variable "bucket_name" {
 variable "ecr-repo-name" {
   description = "The name of the ECR repository"
 }
+
+variable "db-name" {
+  description = "The name of the database"
+  default = "event_management_db"
+}

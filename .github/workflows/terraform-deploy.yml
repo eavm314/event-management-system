@@ -38,6 +38,7 @@ jobs:
         env:
           TF_VAR_bucket_name: ${{ vars.STORAGE_BUCKET }}
           TF_VAR_ecr-repo-name: event-management-system
+          TF_VAR_db-password: ${{ secrets.DB_PASSWORD }}
         run: |
           terraform plan -out=tfplan
 
