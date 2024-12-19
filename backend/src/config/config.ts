@@ -17,5 +17,5 @@ export const auth = {
 }
 
 export const files = {
-  storagePath: process.env.FILE_STORAGE_PATH
+  storagePath: process.env.FILE_STORAGE_PATH || "/tmp",
 }
