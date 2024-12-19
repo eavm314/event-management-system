@@ -3,8 +3,11 @@ data "aws_vpc" "existing" {
   id = "vpc-01bbcdd899659236a"
 }
 
-data "aws_subnet_ids" "existing" {
-  vpc_id = data.aws_vpc.existing.id
+data "aws_subnets" "existing" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.existing.id]
+  }
 }
 
 # Security group for the ECS tasks
