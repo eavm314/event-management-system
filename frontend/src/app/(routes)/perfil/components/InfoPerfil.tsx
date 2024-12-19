@@ -68,7 +68,7 @@ const InfoPerfil = ({ userInfo, setLoading }: Props) => {
 
   useEffect(() => {
     setLoading(true);
-    getProfilePhoto();
+    // getProfilePhoto();
   }, []);
 
   return (
@@ -89,7 +89,7 @@ const InfoPerfil = ({ userInfo, setLoading }: Props) => {
             <Image
               className="rounded-full border-2 border-black 
             cursor-pointer aspect-square object-contain"
-              src={newPhotoUrl ?? profilePhotoUrl ?? NoProfile}
+              src={userInfo.profilePhoto ?? NoProfile}
               alt={userInfo.fullName}
               width={800}
               height={800}
