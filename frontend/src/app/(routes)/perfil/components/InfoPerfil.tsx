@@ -67,7 +67,7 @@ const InfoPerfil = ({ userInfo, setLoading }: Props) => {
   }
 
   useEffect(() => {
-    setLoading(true);
+    // setLoading(true);
     // getProfilePhoto();
   }, []);
 
