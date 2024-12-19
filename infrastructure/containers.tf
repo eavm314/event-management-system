@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "backend" {
-  name                 = var.ecr-repo-name
+  name                 = var.ecr_repo_name
   image_tag_mutability = "MUTABLE"
 }
 
@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "task_definition" {
       environment = [
         {
           name  = "DB_URL"
-          value = "jdbc:mysql://${var.db-username}:${var.db-password}@${aws_db_instance.mysql-server.endpoint}/${var.db-name}"
+          value = "jdbc:mysql://${var.db-username}:${var.db-password}@${aws_db_instance.mysql-server.endpoint}/${var.db_name}"
         }
       ],
     }
@@ -41,7 +41,7 @@ resource "aws_ecs_task_definition" "task_definition" {
 
 # ECS service
 resource "aws_ecs_cluster" "ecs_cluster" {
-  name = "event-management-system-cluster"
+  name = var.cluster_name
   tags = {
     Project     = "Event Management System"
     Description = "This cluster is used to run the Backend Server"

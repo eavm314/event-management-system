@@ -39,4 +39,23 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      
+  deploy:
+    runs-on: ubuntu-latest
+    environment: devops
+
+    steps:
+      - name: Configure AWS credentials 🤖
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to ECS
+        env:
+          ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+        run: |
+          aws ecs update-service \
+            --cluster $ECS_CLUSTER \
+            --service backend-service \
+            --force-new-deployment

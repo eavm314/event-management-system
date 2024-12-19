@@ -1,7 +1,7 @@
 resource "aws_db_instance" "mysql-server" {
   identifier = "event-management-system-db-instance"
   engine                 = "mysql"
-  db_name                = var.db-name
+  db_name                = var.db_name
   instance_class         = "db.t4g.micro"
   allocated_storage      = 20
   engine_version         = "8.0"
