@@ -13,5 +13,4 @@ variable "db_name" {
 
 variable "cluster_name" {
   description = "The name of the ECS cluster"
-  default = "event-management-system-cluster"
 }
