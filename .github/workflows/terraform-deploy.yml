@@ -35,10 +35,11 @@ jobs:
 
       - name: Terraform Plan 📝
         working-directory: infrastructure
+        env:
+          TF_VAR_bucket_name: ${{ vars.STORAGE_BUCKET }}
+          TF_VAR_ecr-repo-name: event-management-system
         run: |
-          terraform plan -out=tfplan \
-            -var 'bucket_name=${{ vars.STORAGE_BUCKET }}'
-
+          terraform plan -out=tfplan
 
       - name: Terraform Apply ✅
         working-directory: infrastructure
