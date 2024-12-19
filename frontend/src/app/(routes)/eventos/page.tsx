@@ -23,7 +23,7 @@ const InicioPage = () => {
 
   const getData = async () => {
     const eventsData = await getEvents();
-    console.log(eventsData);
+    //console.log(eventsData);
     setFeed(eventsData);
     setLoading(false);
   };

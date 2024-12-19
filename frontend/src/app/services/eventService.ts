@@ -14,7 +14,6 @@ export const getEventByCode = async (code: string) => {
 };
 
 export const postNewEvent = async (newEvent: BackendEventInterface) => {
-  console.log(newEvent);
   const { data } = await backendInstance.post("/events", newEvent);
   return data;
 }

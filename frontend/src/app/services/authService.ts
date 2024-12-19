@@ -17,6 +17,6 @@ export const login = async (credentials: any) => {
 };
 
 export const logout = async () => {
-  console.log("logout");
+  //console.log("logout");
   cookies().delete("token");
 }
