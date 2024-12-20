@@ -21,6 +21,7 @@ jobs:
         uses: hashicorp/setup-terraform@v1
 
       - name: Terraform Init 🚀
+        working-directory: infrastructure
         run: |
           cd infrastructure
           terraform init \
@@ -28,4 +29,5 @@ jobs:
             -backend-config="key=${{ vars.TFSTATE_KEY }}"
 
       - name: Terraform Destroy 💀
+        working-directory: infrastructure
         run: terraform destroy -auto-approve
