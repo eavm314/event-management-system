@@ -23,7 +23,6 @@ jobs:
       - name: Terraform Init 🚀
         working-directory: infrastructure
         run: |
-          cd infrastructure
           terraform init \
             -backend-config="bucket=${{ vars.TFSTATE_BUCKET }}" \
             -backend-config="key=${{ vars.TFSTATE_KEY }}"
